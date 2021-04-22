@@ -1,0 +1,60 @@
+Autentificación API REST
+
+Autentificación (authentication): que eres, quien dices ser y valida la información.
+	La autentificación es el proceso o acción de verificar la identidad de un usuario o proceso.
+
+Autorización (authorization): recursos que se pueden acceder
+	La autorización es una función que especifica los privilegios de acceso del usuario a los recursos de tu servicio.
+
+Microservicios:
+	Enfoque arquitectónico y organizativo para el desarrollo modelado nativo a la nube
+	Software compuesto por pequeños servicios independientes que se comunican a través de API
+	Divide aplicaciones en microservicios por función y administra, coordina y gestiona los datos que crean y modifican.
+
+API Gateway:
+	Sistema intermediario con interfaz API REST o WebSocket que enruta desde un único punto de entrada [API Gateway] hacia un grupo de microservicios y/o API de terceros definidos, ocultando los servicios publicados de la API principal y detalles de las versiones,
+	Interactúa como puerta de enlace “Gateway”,
+	Proxy inverso optimizado para autenticar y controlar accesos contra los microservicios y/o API’s,
+	Separa las API públicas externas de las API internas de microservicio,
+	Análisis y supervisión de APIS
+	
+	Seguridad:
+		Autenticación y autorización ( OAuth, grant types, scopes o similares)
+		Protección contra amenazas (DoS, inyección de código, etc)
+	Uso:
+		Desde una API existente:
+			API con muchas funcionalidades y necesitas una app móvil con solo algunas de estas funcionalidades, lo más indicado sería no publicar el API principal. API Gateway, configura en el sistema únicamente aquellos end-points que necesite la app móvil, miinimizando acceso y controlando la autenticación y autorización, unificando protocolos, analizando y supervisando el consumo del API.
+		Servicio SOAP: traduce a API REST
+		API Manager como WSO2: entorno GUI de desarrollo SOA de diseño de APIS
+		Diseña una nueva API como Websocket
+
+1. Autentificación básica: usuario y contraseña: (Nivel: *)
+	Comunica credenciales de cliente - servidor por medio del portocolo http "encabezado HTTP Autorización"
+	
+	Riesgos: Ataque Man-In-The-Middle (MiTM): Intercetan trasmisión de datos y decodifican fácilmente esta información.
+
+	Medidas: configurar conexiones entre los clientes - servicio API funcionen solo con conexión TLS/HTTPS, nunca sobre HTTP.
+
+2. Autentificación basada en token: (Nivel: **)
+	1- Autentificar básicamente
+	2- Servidor: generar un token basado en las credenciales
+	3- Servidor: guardar bd el registro y lo devolverlo al usuario para que no reiniciar sesión en cada petición HTTP, enviando el token codificado.
+	Nota: Token-puedes: verificar antiguedad fecha y la hora, configurar caducación y reinicio de sesion para evitar ataques MiTM
+
+3. Autentificación basada en clave API: (Nivel: ***)
+	1.- Configurar el acceso a los recursos de tu API
+		Tu API: generar una clave (key) y un secret key para cada cliente que requiera acceso a tus servicios
+		Enviar tanto la key como la secret key cuando la Aplicación necesite consumir los datos de tu API
+
+	Desventaja:
+		Dificulta la escalabilidad de tu API por generar credenciales manuales
+		Administrar claves:
+			a. Genera la key y el secret key.
+			b. Enviar las credenciales a los desarrolladores.
+			c. Guardar de forma segura la key y el secret key.
+			Medids: Contar con una Gateway
+
+4. OAuth 2.0 (Autorización abierta)
+	autorización Google, Facebook, Twitter, Amazon, Microsoft, etc.
+	permitir a otros proveedores, servicios o aplicaciones, el acceso a la información sin facilitar directamente las credenciales de los usuarios, accediendo con CONRIFMACIÓN validando la información a la que se le autorizara acceder.
+	aprobada la autorización, esta aplicación de terceros podrá acceder a la información permitida mediante una autentificación con un token de acceso.
