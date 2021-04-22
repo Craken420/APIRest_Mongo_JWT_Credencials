@@ -5,13 +5,11 @@ const auth = require ('../middleware/auth')
 const router = express.Router()
 
 router.get('/', async (req, res) => {
-    console.log('hola')
     res.json({lol:'hola'})
 })
 
 router.get('/users', async (req, res) => {
     try {
-        console.log(User.find())
         const users = await User.find()
         res.status(201).send({users})
     } catch (err) {

@@ -1,0 +1,39 @@
+{
+  "name": "apirest_mongo_jwt_credencials",
+  "version": "1.0.0",
+  "description": "Jwt auth token practice",
+  "main": "./src/app.js",
+  "scripts": {
+    "start": "env-cmd -f .env nodemon /src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Craken420/APIRest_Mongo_JWT_Credencials.git"
+  },
+  "keywords": [
+    "jwt",
+    "token",
+    "mongodb",
+    "express",
+    "nodejs",
+    "bcrypt"
+  ],
+  "author": "Luis Angel Peña Zuñiga",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Craken420/APIRest_Mongo_JWT_Credencials/issues"
+  },
+  "homepage": "https://github.com/Craken420/APIRest_Mongo_JWT_Credencials#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.18",
+    "validador": "^0.1.6"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0",
+    "nodemon": "^2.0.7"
+  }
+}
